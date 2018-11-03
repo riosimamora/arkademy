@@ -1,0 +1,23 @@
+{ 
+  "itemId" : "12341822",
+  "itemName" : "desk",
+  "price" : 700000,
+  "ratings" : [ 
+    {
+      "rater" : "akmal",
+      "score" : 5
+    },
+    {
+      "rater" : "andi",
+      "score" : 5
+    }
+  ],
+  "freeShiping" : true,
+  "color" :[ "brown", "black" ]
+}
+
+//json function
+$.getJSON('http://mydomain.com/getmyDetail.php?jsoncallback=?', function(data) 
+{   
+   alert(data[0].itemId='+itemid'+'&itemName='+itemname+'&'jsoncallback=?');    
+});
