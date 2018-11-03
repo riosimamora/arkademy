@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+#include <conio.h>
+
+void prime(int col, int row) {
+	int n = col * row;
+	int primecnt = 0;
+	int num = 1;
+	int *primearr = new int[n];
+
+	while (primecnt < n && num < CHAR_MAX) {
+		if (isprime(num)) {
+			primearr[primecnt++] = num;
+		}
+		num++;
+	}
+	primecnt = 0;
+	for (int j = 0; j < col; j++) {
+		cout << primearr[primecnt++] << ",";
+	}
+	cout << endl;
+}
+
+int main(int argc, char *argv[]) {
+
+	prime(3, 4);
+	return 0;
+}
