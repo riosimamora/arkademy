@@ -1,0 +1,119 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Styling Table</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+ 
+    <table width="648" cellpadding="5">
+    	<tr class="head">
+        	<th width="282">id</th><th width="152">name</th><th width="118">category</th>
+        </tr>
+        <tr class="satu">
+        	<td align="center">1</td><td>1</td><td>Sabun Wangi</td><td align="center">Peralatan Mandi</td>
+        </tr>
+        <tr class="dua">
+        	<td align="center">2</td>
+        	<td>2</td><td>Minuman Cola</td><td align="center">Minuman Kemasan</td>
+        </tr>
+        <tr class="satu">
+        	<td align="center">3</td>
+        	<td>3</td><td>Prenagon Gold</td><td align="center">Produk Susu</td>
+        </tr>
+        <tr class="dua">
+        	<td align="center">4</td>
+        	<td>5</td><td>Aquaa</td><td align="center">Minuman Kemasan</td>
+        </tr>
+        <tr class="satu">
+        	<td align="center">5</td>
+        	<td>6</td><td>The Botol</td><td align="center">Minuman Kemasan</td>
+        </tr>
+        <tr class="dua">
+        	<td align="center">6</td>
+        	<td>7</td><td>Sampo</td><td align="center">Peralatan Mandi</td>
+        </tr>
+    </table>
+ 
+ table, th, td {
+	border-collapse:collapse;
+	border:1px solid #999;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:12px;
+}
+ 
+.head {
+	background: rgb(206,220,231); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 ); /* IE6-9 */
+}
+ 
+.head th {
+	padding:10px;
+	color:#333;
+	text-shadow:1px 1px 0px #CCC;
+	font-size:14px;
+}
+ 
+.satu {
+	background-color:#CECECE;
+}
+ 
+.dua {
+	background-color:#E0E0E0;
+}
+ 
+.satu:hover, .dua:hover {
+	background-color:#BADFFE;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+</body>
+</html>
+
+public class ExecuteQuery2 {
+    public static void main(String[] args) {
+        Connection conn = null;
+        Statement stat = null;
+        ResultSet rset = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception e) {
+        }
+ 
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/test?"+"user=root&password=");
+            stat = conn.createStatement();
+            rset = stat.executeQuery("SELECT * products");
+            System.out.println("id\tname\tcategory");
+            while (rset.next()) {
+                System.out.println(rset.getString("id")+"\t"+rset.getString("name")+"\t"+rset.getString("category"));
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException: "+e.getMessage());
+            System.out.println("SQLState: "+e.getSQLState());
+            System.out.println("VendorError: "+e.getErrorCode());
+        } finally{
+            if(rset!=null){
+                try {
+                    rset.close();
+                } catch (Exception e) {
+                    rset = null;
+                }
+            }
+            if(stat!=null){
+                try {
+                    stat.close();
+                } catch (Exception e) {
+                    stat = null;
+                }
+            }
+        }
+    }
+}
