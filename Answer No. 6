@@ -1,0 +1,15 @@
+CREATE TABLE product_categories(
+    id INT(30) NOT NULL,
+    name VARCHAR(30) NOT NULL,
+    created_date DATETIME(30),
+);
+
+CREATE TABLE products(
+    id INT(30) NOT NULL,
+    name VARCHAR(30) NOT NULL,
+    category_id INT,
+    created_date DATETIME(30),
+);
+
+SELECT id,name,category FROM id INNER JOIN name 
+ON category_id=id
