@@ -1,0 +1,8 @@
+<?php
+$string="Arkademy";
+
+$result = strlen(string $string);
+
+echo "Result: $result";
+
+?>
